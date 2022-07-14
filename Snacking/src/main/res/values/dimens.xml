@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="quick_snack_bar_default_elevation">4dp</dimen>
+    <dimen name="quick_snack_bar_default_elevation">3dp</dimen>
     <dimen name="quick_snack_bar_text_size">13sp</dimen>
     <dimen name="quick_snack_bar_icon_size">22dp</dimen>
     <dimen name="quick_snack_bar_icon_margin_start">5dp</dimen>
