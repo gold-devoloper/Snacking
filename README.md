@@ -9,7 +9,7 @@ maven { url 'https://jitpack.io' }
 
 #### dependencies
 ```gradle
-implementation 'com.github.eriffanani:Snacking:1.0.0'
+implementation 'com.github.eriffanani:Snacking:1.1.0'
 ```
 ### Licence
 ```license
