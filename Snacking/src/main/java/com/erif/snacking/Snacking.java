@@ -177,15 +177,14 @@ public class Snacking {
                 for (int i=0; i<layout.getChildCount(); i++) {
                     View child = layout.getChildAt(i);
                     if (child instanceof FloatingActionButton) {
-                        fab = (FloatingActionButton) child;
+                        fab = child;
                         break;
                     } else if (child instanceof ExtendedFloatingActionButton) {
-                        fab = (ExtendedFloatingActionButton) child;
+                        fab = child;
                         break;
                     }
                 }
             }
-
         }
     }
 
