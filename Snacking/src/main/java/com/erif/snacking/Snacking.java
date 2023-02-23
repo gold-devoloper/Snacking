@@ -43,8 +43,6 @@ import androidx.annotation.FontRes;
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
@@ -86,7 +84,7 @@ public class Snacking {
     private Snackbar snackBar;
 
     // Views
-    private ConstraintLayout parent;
+    private RelativeLayout parent;
     private ImageView imgIcon;
     private TextView textMessage;
     private TextView textAction;
@@ -481,20 +479,10 @@ public class Snacking {
 
             textMessage.post(() -> {
                 if (textMessage.getLineCount() > 2 || textAction.length() > 10) {
-                    ConstraintSet set = new ConstraintSet();
-                    set.clone(parent);
-                    set.clear(R.id.snackBar_custom_imgIcon, ConstraintSet.TOP);
-                    set.clear(R.id.snackBar_custom_imgIcon, ConstraintSet.BOTTOM);
 
-                    set.clear(R.id.snackBar_custom_btnAction, ConstraintSet.TOP);
-                    set.clear(R.id.snackBar_custom_btnAction, ConstraintSet.BOTTOM);
-
-                    set.clear(R.id.snackBar_custom_txtMessage, ConstraintSet.END);
-                    set.clear(R.id.snackBar_custom_txtMessage, ConstraintSet.BOTTOM);
-                    set.applyTo(parent);
-
-                    ConstraintLayout.LayoutParams paramsIcon = (ConstraintLayout.LayoutParams) imgIcon.getLayoutParams();
-                    paramsIcon.topToTop = textMessage.getId();
+                    RelativeLayout.LayoutParams paramsIcon = (RelativeLayout.LayoutParams) imgIcon.getLayoutParams();
+                    paramsIcon.removeRule(RelativeLayout.CENTER_VERTICAL);
+                    paramsIcon.addRule(RelativeLayout.ALIGN_TOP, textMessage.getId());
 
                     int getMarginTop = getDimenInt(R.dimen.quick_snack_bar_vertical_padding);
                     float countMarginTop = getMarginTop / 6f;
@@ -505,16 +493,19 @@ public class Snacking {
                     );
                     imgIcon.setLayoutParams(paramsIcon);
 
-                    ConstraintLayout.LayoutParams paramsMessage = (ConstraintLayout.LayoutParams) textMessage.getLayoutParams();
-                    paramsMessage.endToEnd = parent.getId();
+                    RelativeLayout.LayoutParams paramsMessage = (RelativeLayout.LayoutParams) textMessage.getLayoutParams();
+                    paramsMessage.removeRule(RelativeLayout.START_OF);
                     textMessage.setLayoutParams(paramsMessage);
                     textMessage.setPadding(
                             textMessage.getPaddingStart(), textMessage.getPaddingTop(),
                             textMessage.getPaddingEnd(), getDimenInt(R.dimen.quick_snack_bar_default_elevation)
                     );
 
-                    ConstraintLayout.LayoutParams paramsAction = (ConstraintLayout.LayoutParams) textAction.getLayoutParams();
-                    paramsAction.topToBottom = textMessage.getId();
+                    RelativeLayout.LayoutParams paramsAction = (RelativeLayout.LayoutParams) textAction.getLayoutParams();
+                    paramsAction.removeRule(RelativeLayout.ALIGN_TOP);
+                    paramsAction.removeRule(RelativeLayout.ALIGN_BOTTOM);
+                    paramsAction.addRule(RelativeLayout.BELOW, textMessage.getId());
+
                     textAction.setLayoutParams(paramsAction);
                     int getActionPaddingVertical = textAction.getPaddingTop();
                     float count = getActionPaddingVertical / 2.5f;

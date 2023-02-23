@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -12,23 +12,18 @@
         android:layout_width="@dimen/quick_snack_bar_icon_size"
         android:layout_height="@dimen/quick_snack_bar_icon_size"
         android:layout_marginStart="@dimen/quick_snack_bar_icon_margin_start"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/snackBar_custom_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_centerVertical="true"
         tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/snackBar_custom_txtMessage"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/quick_snack_bar_text_size"
         android:layout_marginStart="@dimen/quick_snack_bar_message_margin_start"
         android:layout_marginEnd="@dimen/quick_snack_bar_message_margin_start"
         android:includeFontPadding="false"
-        app:layout_constraintStart_toEndOf="@id/snackBar_custom_imgIcon"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/snackBar_custom_btnAction"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_toEndOf="@id/snackBar_custom_imgIcon"
         android:textColor="@color/quick_snack_bar_default_text_color"
         android:paddingTop="@dimen/quick_snack_bar_vertical_padding"
         android:paddingBottom="@dimen/quick_snack_bar_vertical_padding"/>
@@ -46,10 +41,10 @@
         android:includeFontPadding="false"
         android:textColor="@color/quick_snack_bar_default_action_text_color"
         android:background="@drawable/bg_custom_quick_snack_bar_button"
-        app:layout_constraintTop_toTopOf="@id/snackBar_custom_txtMessage"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/snackBar_custom_txtMessage"
+        android:layout_alignTop="@id/snackBar_custom_txtMessage"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBottom="@id/snackBar_custom_txtMessage"
         android:visibility="gone"
         android:textStyle="bold"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
